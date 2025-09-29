@@ -1,35 +1,38 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Comprobante Hey Banco</title>
   <style>
+    /* ===== Fondo estilo app (oscuro con franjas) ===== */
+    html, body {
+      height: 100%;
+    }
     body {
       margin: 0;
-      padding: 0;
-      height: 100vh;
       font-family: Arial, Helvetica, sans-serif;
       display: flex;
-      justify-content: center;
       align-items: center;
+      justify-content: center;
       background: linear-gradient(145deg, #0a0a0f 0%, #1a1a22 40%, #101018 100%);
       background-size: 400% 400%;
       animation: gradientShift 10s ease infinite;
       color: #fff;
+      position: relative;         /* crea contexto para z-index */
+      z-index: 0;                 /* por debajo del contenido */
+      overflow-x: hidden;
     }
-
     @keyframes gradientShift {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* efecto de franjas brillosas */
+    /* capas de brillo diagonales */
     body::before {
       content: "";
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
+      inset: 0;
       background: repeating-linear-gradient(
         135deg,
         rgba(255,255,255,0.05) 0px,
@@ -38,58 +41,82 @@
         transparent 20px
       );
       pointer-events: none;
+      z-index: 0;                 /* debajo de la tarjeta */
     }
 
+    /* ===== Tarjeta ===== */
     .card {
-      background: rgba(0,0,0,0.7);
+      background: rgba(0,0,0,0.72);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 16px;
       padding: 24px;
-      width: 90%;
-      max-width: 420px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+      width: min(92vw, 440px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.55);
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 1;                 /* por encima del fondo */
+      backdrop-filter: blur(2px);
     }
-
-    .logo {
-      margin-bottom: 12px;
-    }
-
-    .logo img {
-      width: 140px;
-    }
-
+    .logo { margin-bottom: 10px; }
+    .logo img { width: 140px; height: auto; }
     h2 {
-      margin: 0 0 18px;
+      margin: 8px 0 16px;
       font-size: 20px;
-      font-weight: 600;
+      font-weight: 700;
+      letter-spacing: .4px;
     }
-
     .monto {
       font-size: 26px;
-      font-weight: bold;
-      margin: 12px 0;
-      color: #00ffcc;
+      font-weight: 800;
+      margin: 6px 0 14px;
+      color: #27e4ff;
     }
-
     .detalle {
       text-align: left;
-      margin-top: 20px;
       font-size: 14px;
       line-height: 1.6;
+      background: rgba(255,255,255,0.05);
+      border-radius: 10px;
+      padding: 12px;
     }
-
-    .qr {
-      margin-top: 20px;
-    }
-
+    .detalle p { margin: 6px 0; }
+    .qr { margin-top: 18px; }
     .qr img {
       width: 140px;
-      border: 6px solid white;
-      border-radius: 8px;
       background: #fff;
+      border: 6px solid #fff;
+      border-radius: 8px;
     }
-
     footer {
-      margin-top
+      margin-top: 16px;
+      font-size: 12px;
+      color: #cfcfcf;
+      opacity: .85;
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hey_Banco_logo.png" alt="Hey Banco">
+    </div>
+    <h2>Comprobante de Transferencia</h2>
+    <div class="monto">Importe: $23,868.00 MXN</div>
+
+    <section class="detalle">
+      <p><strong>Beneficiario:</strong> VALIDACIÓN DE TRANSFERENCIA</p>
+      <p><strong>Cuenta destino (CLABE):</strong> 058597000078360075</p>
+      <p><strong>Fecha:</strong> 29/09/2025 &nbsp; <strong>Hora:</strong> 12:10</p>
+      <p><strong>Referencia:</strong> HBY23984723</p>
+      <p><strong>A cuenta BBVA:</strong> **** **** **** **9436</p>
+    </section>
+
+    <!-- Si tienes tu QR en el repo como qr_transfer_hey.png, se mostrará aquí -->
+    <div class="qr">
+      <img src="qr_transfer_hey.png" alt="QR comprobante">
+    </div>
+
+    <footer>Comprobante con estilo Hey Banco</footer>
+  </main>
+</body>
+</html>
