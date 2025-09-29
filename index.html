@@ -7,23 +7,49 @@
   <style>
     body {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(145deg, #0f1b40, #1c2e70, #2f4ba0);
-      color: #fff;
-      min-height: 100vh;
+      padding: 0;
+      height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
       display: flex;
       justify-content: center;
       align-items: center;
+      background: linear-gradient(145deg, #0a0a0f 0%, #1a1a22 40%, #101018 100%);
+      background-size: 400% 400%;
+      animation: gradientShift 10s ease infinite;
+      color: #fff;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* efecto de franjas brillosas */
+    body::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: repeating-linear-gradient(
+        135deg,
+        rgba(255,255,255,0.05) 0px,
+        rgba(255,255,255,0.05) 2px,
+        transparent 2px,
+        transparent 20px
+      );
+      pointer-events: none;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.1);
+      background: rgba(0,0,0,0.7);
       border-radius: 16px;
       padding: 24px;
       width: 90%;
       max-width: 420px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.6);
       text-align: center;
+      position: relative;
+      z-index: 1;
     }
 
     .logo {
@@ -66,35 +92,4 @@
     }
 
     footer {
-      margin-top: 20px;
-      font-size: 12px;
-      opacity: 0.8;
-    }
-  </style>
-</head>
-<body>
-  <div class="card">
-    <div class="logo">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hey_Banco_logo.png" alt="Hey Banco Logo">
-    </div>
-    <h2>Comprobante de Transferencia</h2>
-    <div class="monto">Importe: $23,868.00 MXN</div>
-
-    <div class="detalle">
-      <p><strong>Cuenta origen:</strong> 1234 **** 5678</p>
-      <p><strong>Cuenta destino:</strong> 8765 **** 4321</p>
-      <p><strong>Fecha:</strong> 29/09/2025</p>
-      <p><strong>Hora:</strong> 17:45</p>
-      <p><strong>Referencia:</strong> HBY23984723</p>
-    </div>
-
-    <div class="qr">
-      <img src="qr_transfer_hey.png" alt="QR comprobante">
-    </div>
-
-    <footer>
-      Este comprobante fue generado con estilo Hey Banco
-    </footer>
-  </div>
-</body>
-</html>
+      margin-top
