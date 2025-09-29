@@ -1,145 +1,100 @@
-
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width,initial-scale=1"/>
-<title>VALIDACIÓN DE TRANSFERENCIA</title>
-<style>
-  :root {
-    --hb1:#3a0ca3;
-    --hb2:#7209b7;
-    --hb3:#f72585;
-    --muted:#6c757d;
-    --card:#ffffff;
-  }
-  body{
-    margin:0; min-height:100vh;
-    background: radial-gradient(1200px 800px at 15% 10%, var(--hb3) 0%, transparent 40%),
-                radial-gradient(1000px 700px at 85% 90%, var(--hb2) 0%, transparent 45%),
-                linear-gradient(135deg, var(--hb1), #240046 60%);
-    display:flex; align-items:center; justify-content:center; padding:24px;
-    font-family: Arial, Helvetica, sans-serif;
-    color:#0f1020;
-  }
-  .card{
-    width: 820px; max-width:95%;
-    background: var(--card); border-radius:18px;
-    box-shadow: 0 18px 50px rgba(0,0,0,.25);
-    overflow:hidden;
-  }
-  .card-header{
-    background: linear-gradient(135deg, var(--hb1), var(--hb2) 60%, var(--hb3));
-    color:#fff; padding:18px 20px; display:flex; align-items:center; gap:14px;
-  }
-  .logo-wrap{display:flex; align-items:center; gap:12px}
-  .logo-badge{
-    width:48px; height:48px; border-radius:12px; background:rgba(255,255,255,.15);
-    display:flex; align-items:center; justify-content:center;
-    backdrop-filter: blur(2px);
-  }
-  .logo-badge svg{width:30px; height:30px}
-  .brand{font-weight:800; letter-spacing:.4px; font-size:18px}
-  .title{margin-left:auto; font-weight:700; font-size:16px; opacity:.9}
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante Hey Banco</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(145deg, #0f1b40, #1c2e70, #2f4ba0);
+      color: #fff;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
 
-  .content{padding:20px}
-  .amount{font-weight:800; font-size:22px; color: var(--hb1)}
-  .grid{display:grid; grid-template-columns: 1fr 1fr; gap:10px 16px; margin-top:10px}
-  .label{color:var(--muted); font-size:13px}
-  .value{font-weight:700; font-size:16px}
+    .card {
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 16px;
+      padding: 24px;
+      width: 90%;
+      max-width: 420px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      text-align: center;
+    }
 
-  .qr-area{margin-top:18px; display:flex; gap:20px; align-items:center; flex-wrap:wrap}
-  .qr-box{background:#fff; border:1px solid #ececec; border-radius:12px; padding:10px; width:200px; box-shadow:0 10px 24px rgba(58,12,163,.15)}
-  .actions{display:flex; gap:10px; margin-top:8px; flex-wrap:wrap}
-  .btn{
-    padding:10px 14px; border-radius:10px; border:0; cursor:pointer; font-weight:600;
-    background: linear-gradient(135deg, var(--hb2), var(--hb3));
-    color:#fff;
-  }
-  .note{color:#4b4b4b; font-size:12px; margin-top:8px}
+    .logo {
+      margin-bottom: 12px;
+    }
 
-  @media (max-width:560px){
-    .grid{grid-template-columns: 1fr}
-  }
-</style>
+    .logo img {
+      width: 140px;
+    }
+
+    h2 {
+      margin: 0 0 18px;
+      font-size: 20px;
+      font-weight: 600;
+    }
+
+    .monto {
+      font-size: 26px;
+      font-weight: bold;
+      margin: 12px 0;
+      color: #00ffcc;
+    }
+
+    .detalle {
+      text-align: left;
+      margin-top: 20px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .qr {
+      margin-top: 20px;
+    }
+
+    .qr img {
+      width: 140px;
+      border: 6px solid white;
+      border-radius: 8px;
+      background: #fff;
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 12px;
+      opacity: 0.8;
+    }
+  </style>
 </head>
 <body>
-  <main class="card">
-    <header class="card-header">
-      <div class="logo-wrap">
-        <div class="logo-badge" aria-hidden="true">
-          <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <rect x="6" y="6" width="52" height="52" rx="12" fill="white" opacity="0.16"/>
-            <path d="M20 20v24M20 32h14" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M46 20v24M32 32h14" stroke="white" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-        </div>
-        <div class="brand">Hey Banco</div>
-      </div>
-      <div class="title">VALIDACIÓN DE TRANSFERENCIA</div>
-    </header>
+  <div class="card">
+    <div class="logo">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/4/4e/Hey_Banco_logo.png" alt="Hey Banco Logo">
+    </div>
+    <h2>Comprobante de Transferencia</h2>
+    <div class="monto">Importe: $23,868.00 MXN</div>
 
-    <section class="content">
-      <div class="amount">VALIDACION DE TRANSFERENCIA POR $15,300.00 MXN</div>
-      <div class="grid" style="margin-top:10px">
-        <div>
-          <div class="label">Fecha de operación</div>
-          <div class="value">24/09/2025</div>
-        </div>
-        <div>
-          <div class="label">Hora</div>
-          <div class="value">12:10</div>
-        </div>
-        <div>
-          <div class="label">Cuenta destino</div>
-          <div class="value">BBVA ••••9436</div>
-        </div>
-      </div>
+    <div class="detalle">
+      <p><strong>Cuenta origen:</strong> 1234 **** 5678</p>
+      <p><strong>Cuenta destino:</strong> 8765 **** 4321</p>
+      <p><strong>Fecha:</strong> 29/09/2025</p>
+      <p><strong>Hora:</strong> 17:45</p>
+      <p><strong>Referencia:</strong> HBY23984723</p>
+    </div>
 
-      <div class="label" style="margin-top:14px">Validar transferencia con los siguientes datos</div>
-      <div class="grid">
-        <div>
-          <div class="label">CLABE</div>
-          <div class="value">058597000078360075</div>
-        </div>
-        <div>
-          <div class="label">Beneficiario</div>
-          <div class="value">VALIDACION DE TRANSFERENCIA</div>
-        </div>
-        <div>
-          <div class="label">Concepto</div>
-          <div class="value">VALIDACIÓN</div>
-        </div>
-        <div>
-          <div class="label">Importe</div>
-          <div class="value">15,300.00 MXN</div>
-        </div>
-      </div>
+    <div class="qr">
+      <img src="qr_transfer_hey.png" alt="QR comprobante">
+    </div>
 
-      <div class="qr-area">
-        <div class="qr-box">
-          <img src="qr_transfer_hey.png" alt="Código QR" style="width:100%; height:100%; object-fit:contain"/>
-        </div>
-        <div>
-          <div class="actions">
-            <button class="btn" id="btnCopy">Copiar datos</button>
-            <a class="btn" href="qr_transfer_hey.png" download="qr_transfer_hey.png">Descargar QR</a>
-          </div>
-          <div class="note">Este comprobante es informativo. Verifica los datos antes de transferir.</div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-<script>
-document.getElementById('btnCopy').addEventListener('click', function(){
-  var text = "VALIDACION DE TRANSFERENCIA POR $15,300.00 MXN\nFecha de operación: 24/09/2025   Hora: 12:10\nA cuenta BBVA con terminación **9436\n\nVALIDAR TRANSFERENCIA con los siguientes datos:\nCLABE: 058597000078360075\nBeneficiario: VALIDACION DE TRANSFERENCIA\nConcepto: VALIDACIÓN\nImporte: 15,300.00 MXN";
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ alert('Datos copiados al portapapeles'); }, function(){ prompt('Copia manualmente:', text); });
-  } else {
-    prompt('Copia manualmente:', text);
-  }
-});
-</script>
+    <footer>
+      Este comprobante fue generado con estilo Hey Banco
+    </footer>
+  </div>
 </body>
 </html>
